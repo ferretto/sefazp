@@ -25,6 +25,7 @@ class Nfe
       chave_de_acesso = @document.elements["nfeProc/protNFe/infProt/chNFe"].get_text.to_s rescue nil
       numero = @document.elements["nfeProc/NFe/infNFe/ide/nNF"].get_text.to_s rescue nil
       serie = @document.elements["nfeProc/NFe/infNFe/ide/serie"].get_text.to_s rescue nil
+      tipo = @document.elements["nfeProc/NFe/infNFe/ide/tpNF"].get_text.to_s rescue nil
       natureza_da_operacao = @document.elements["nfeProc/NFe/infNFe/ide/natOp"].get_text.to_s rescue nil
       protocolo_de_autorizacao = "#{@document.elements['nfeProc/protNFe/infProt/nProt'].get_text.to_s} #{@document.elements['nfeProc/protNFe/infProt/dhRecbto'].get_text.to_s}" rescue nil
       cnpj_do_emitente = @document.elements["nfeProc/NFe/infNFe/emit/CNPJ"].get_text.to_s rescue nil
@@ -103,6 +104,7 @@ class Nfe
               chave_de_acesso: chave_de_acesso,
               numero: numero,
               serie: serie,
+              tipo: tipo,
               natureza_da_operacao: natureza_da_operacao,
               protocolo_de_autorizacao: protocolo_de_autorizacao,
               cnpj_do_emitente: cnpj_do_emitente,
@@ -163,6 +165,7 @@ class Nfe
       chave_de_acesso = @document.elements["nfeProc/protNFe/infProt/chNFe"].get_text.to_s rescue nil
       numero = @document.elements["nfeProc/NFe/infNFe/ide/nNF"].get_text.to_s rescue nil
       serie = @document.elements["nfeProc/NFe/infNFe/ide/serie"].get_text.to_s rescue nil
+      tipo = @document.elements["nfeProc/NFe/infNFe/ide/tpNF"].get_text.to_s rescue nil
       natureza_da_operacao = @document.elements["nfeProc/NFe/infNFe/ide/natOp"].get_text.to_s rescue nil
       protocolo_de_autorizacao = "#{@document.elements['nfeProc/protNFe/infProt/nProt'].get_text.to_s} #{@document.elements['nfeProc/protNFe/infProt/dhRecbto'].get_text.to_s}" rescue nil
       cnpj_do_emitente = @document.elements["nfeProc/NFe/infNFe/emit/CNPJ"].get_text.to_s rescue nil
@@ -239,6 +242,7 @@ class Nfe
               chave_de_acesso: chave_de_acesso,
               numero: numero,
               serie: serie,
+              tipo: tipo,
               natureza_da_operacao: natureza_da_operacao,
               protocolo_de_autorizacao: protocolo_de_autorizacao,
               cnpj_do_emitente: cnpj_do_emitente,
