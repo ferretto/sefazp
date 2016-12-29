@@ -228,11 +228,12 @@ class Nfe
         item_quantidade = prod.elements['qCom'].get_text.to_s rescue nil
         item_valor_unitario = prod.elements['vUnCom'].get_text.to_s rescue nil
         item_valor_total = prod.elements['vProd'].get_text.to_s rescue nil
+        item_origem = imposto.elements['ICMS/ICMS00/orig'].get_text.to_s rescue nil
         item_cst = imposto.elements['ICMS/ICMS00/CST'].get_text.to_s rescue nil
         item_base_de_calculo_do_icms = imposto.elements['ICMS/ICMS00/vBC'].get_text.to_s rescue nil
         item_valor_do_icms = imposto.elements['ICMS/ICMS00/vICMS'].get_text.to_s rescue nil
         item_aliquota_do_icms = imposto.elements['ICMS/ICMS00/pICMS'].get_text.to_s rescue nil
-        items << { "codigo" => item_codigo, "codigo_ean" => item_ean, "descricao" => item_descricao, "ncm_sh" => item_ncm_sh, "cfop" => item_cfop, "unidade" => item_unidade, "quantidade" => item_quantidade, "valor_unitario" => item_valor_unitario, "valor_total" => item_valor_total, "cst" => item_cst, "base_de_calculo_do_icms" => item_base_de_calculo_do_icms, "valor_do_icms" => item_valor_do_icms, "aliquota_do_icms" => item_aliquota_do_icms }
+        items << { "codigo" => item_codigo, "codigo_ean" => item_ean, "descricao" => item_descricao, "ncm_sh" => item_ncm_sh, "cfop" => item_cfop, "unidade" => item_unidade, "quantidade" => item_quantidade, "valor_unitario" => item_valor_unitario, "valor_total" => item_valor_total, "origem" => item_origem, "cst" => item_cst, "base_de_calculo_do_icms" => item_base_de_calculo_do_icms, "valor_do_icms" => item_valor_do_icms, "aliquota_do_icms" => item_aliquota_do_icms }
       end
 
       numero_fatura = @document.elements['nfeProc/NFe/infNFe/cobr/fat/nFat'].get_text.to_s rescue nil
