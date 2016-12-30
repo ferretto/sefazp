@@ -275,7 +275,6 @@ class Nfe
               numero_do_destinatario: numero_do_destinatario,
               bairro_do_destinatario: bairro_do_destinatario,
               cep_do_destinatario: cep_do_destinatario,
-              uf_do_emitente: uf_do_emitente,
               telefone_do_destinatario: telefone_do_destinatario,
               data_de_emissao: data_de_emissao,
               data_de_entrada_saida: data_de_entrada_saida,
