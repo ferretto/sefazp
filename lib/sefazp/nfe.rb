@@ -228,18 +228,43 @@ class Nfe
         item_quantidade = prod.elements['qCom'].get_text.to_s rescue nil
         item_valor_unitario = prod.elements['vUnCom'].get_text.to_s rescue nil
         item_valor_total = prod.elements['vProd'].get_text.to_s rescue nil
-        item_origem = imposto.elements['ICMS/ICMS00/orig'].get_text.to_s rescue nil
-        item_cst = imposto.elements['ICMS/ICMS00/CST'].get_text.to_s rescue nil
-        item_base_de_calculo_do_icms = imposto.elements['ICMS/ICMS00/vBC'].get_text.to_s rescue nil
-        item_valor_do_icms = imposto.elements['ICMS/ICMS00/vICMS'].get_text.to_s rescue nil
-        item_aliquota_do_icms = imposto.elements['ICMS/ICMS00/pICMS'].get_text.to_s rescue nil
-        items << { "codigo" => item_codigo, "codigo_ean" => item_ean, "descricao" => item_descricao, "ncm_sh" => item_ncm_sh, "cfop" => item_cfop, "unidade" => item_unidade, "quantidade" => item_quantidade, "valor_unitario" => item_valor_unitario, "valor_total" => item_valor_total, "origem" => item_origem, "cst" => item_cst, "base_de_calculo_do_icms" => item_base_de_calculo_do_icms, "valor_do_icms" => item_valor_do_icms, "aliquota_do_icms" => item_aliquota_do_icms }
+        item_valor_total_tributos = imposto.elements['vTotTrib'].get_text.to_s rescue nil
+
+        imposto.elements['ICMS'].children.each do |icms|
+              item_origem                   = icms.elements['orig'].get_text.to_s rescue nil
+              item_cst                      = icms.elements['CST'].get_text.to_s rescue nil
+              item_base_de_calculo_do_icms  = icms.elements['vBC'].get_text.to_s rescue nil
+              item_valor_do_icms            = icms.elements['vICMS'].get_text.to_s rescue nil
+              item_aliquota_do_icms         = icms.elements['pICMS'].get_text.to_s rescue nil
+
+              items << {
+                         "codigo" => item_codigo,
+                         "codigo_ean" => item_ean,
+                         "descricao" => item_descricao,
+                         "ncm_sh" => item_ncm_sh,
+                         "cfop" => item_cfop,
+                         "unidade" => item_unidade,
+                         "quantidade" => item_quantidade,
+                         "valor_unitario" => item_valor_unitario,
+                         "valor_total" => item_valor_total,
+                         "origem" => item_origem,
+                         "cst" => item_cst,
+                         "base_de_calculo_do_icms" => item_base_de_calculo_do_icms,
+                         "valor_do_icms" => item_valor_do_icms,
+                         "aliquota_do_icms" => item_aliquota_do_icms,
+                         "item_valor_total_tributos" => item_valor_total_tributos
+                       }
+        end
       end
 
-      numero_fatura = @document.elements['nfeProc/NFe/infNFe/cobr/fat/nFat'].get_text.to_s rescue nil
-      valor_original_fatura = document.elements['nfeProc/NFe/infNFe/cobr/fat/vOrig'].get_text.to_s rescue nil
-      valor_liquido_fatura = @document.elements['nfeProc/NFe/infNFe/cobr/fat/vLiq'].get_text.to_s rescue nil
-      fatura = {"numero" => numero_fatura, "valor_original" => valor_original_fatura, "valor_liquido" => valor_liquido_fatura}
+      numero_fatura         = @document.elements['nfeProc/NFe/infNFe/cobr/fat/nFat'].get_text.to_s rescue nil
+      valor_original_fatura = @document.elements['nfeProc/NFe/infNFe/cobr/fat/vOrig'].get_text.to_s rescue nil
+      valor_liquido_fatura  = @document.elements['nfeProc/NFe/infNFe/cobr/fat/vLiq'].get_text.to_s rescue nil
+      fatura = {
+                  "numero" => numero_fatura,
+                  "valor_original" => valor_original_fatura,
+                  "valor_liquido" => valor_liquido_fatura
+                }
    
       duplicatas = []
       @document.elements.each("nfeProc/NFe/infNFe/cobr/dup") do |duplicata|
